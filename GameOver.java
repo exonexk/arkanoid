@@ -49,9 +49,14 @@ public class GameOver extends Activity {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("username", nam);
-        editor.putString("score", score);
-        editor.apply();
+        String sc=pref.getString("score", "0");
+        int sco = Integer.parseInt(sc);
+        int highsco = Integer.parseInt(score);
+        if(highsco > sco){
+            editor.putString("username", nam);
+            editor.putString("score", score);
+            editor.apply();
+        }
         startActivity(intent);
     }
 }
